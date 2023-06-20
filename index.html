@@ -21,6 +21,9 @@
     <!-- VUE JS -->
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 
+    <!-- JS SCRIPT -->
+    <script defer src="JS/main.js"></script>
+
     <!-- FAVICON -->
     <link rel="icon" href="img/vue-js_logo-svg.ico" type="image/x-icon">
 
@@ -29,61 +32,43 @@
 </head>
 
 <body class="vh-100">
-
-
-    <header class="d-flex align-items-center mb-5">
-        <h1 class="text-white fw-bold pb-3">Ps5</h1>
-    </header>
-
-
-    <div class="container-fluid">
-
-        <div class="row justify-content-center">
-
+    <div id="root">
+        <header class="d-flex align-items-center mb-5">
+          <h1 class="text-white fw-bold pb-3">Ps5</h1>
+          <h3 class="text-warning fw-bold">+</h3>
+        </header>
+      
+        <div class="container-fluid">
+          <div class="row justify-content-center">
             <div class="col-5">
-
-                <div class="d-flex" id="img-carousel">  
-
-                    <i id="prev" class="bi bi-arrow-left text-white btn btn-primary btn-rounded"></i>
-
-                    <div class="gallery">
-
-                    </div>
-
-                    <i id="next" class="bi bi-arrow-right text-white btn btn-primary btn-rounded"></i>
-
+              <div class="d-flex" id="img-carousel">
+                <i id="prev" class="bi bi-arrow-left text-white btn btn-primary btn-rounded" @click="prevImage"></i>
+                <div class="gallery">
+                  <img v-for="(pic, i) in pictures" :src="pic.img" :alt="pic.description" :title="pic.title" :class="{ active : currentIndex === i}">
                 </div>
-
+                <i id="next" class="bi bi-arrow-right text-white btn btn-primary btn-rounded" @click="nextImage"></i>
+              </div>
             </div>
-
-        </div>
-
-        <!-- THUMBNAIL -->
-        <div class="container-fluid align-items-center">
-
+          </div>
+      
+          <!-- THUMBNAIL -->
+          <div class="container-fluid align-items-center">
             <div class="row justify-content-center">
-
-                <div class="col-5">
-
-                    <div id="img-thumbnail">
-                        <div class="gallery d-flex">
-
-                        </div>
-
-                    </div>
-
+              <div class="col-5">
+                <div id="img-thumbnail">
+                  <div class="gallery d-flex">
+                    <img v-for="(pic, i) in pictures" :src="pic.img" :alt="pic.description" :title="pic.title" :class="{ show : currentIndex === i}">
+                  </div>
                 </div>
-
+              </div>
             </div>
-            
+          </div>
         </div>
-
-    </div>
-
-    <footer class="bg-dark d-flex align-items-center justify-content-center">
-        <address class="text-white pt-3">powered by <span class="text-warning">VueJs</span></address>
-    </footer>
-    
+      
+        <footer class="bg-dark d-flex align-items-center justify-content-center">
+          <address class="text-white pt-3">powered by <span class="text-warning">VueJs</span></address>
+        </footer>
+      </div>
 </body>
 
 </html>
